@@ -1,0 +1,22 @@
+﻿@page "/MyAuthorizedPage"
+@using MyProject.Localization
+@using Microsoft.Extensions.Localization
+@attribute [Authorize("AbpIdentity.Roles")]
+@inject IStringLocalizer<MyProjectResource> L
+
+
+@if (_test)
+{
+    <div>@L["LongWelcomeMessage"]</div>
+}
+
+
+@code {
+
+    private bool _test = false;
+    protected override async Task OnInitializedAsync()
+    {
+        _test = true;
+        await Task.Delay(5000);
+    }
+}
